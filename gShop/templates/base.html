@@ -129,7 +129,7 @@
         <ul class="nav navbar-nav">
           <li><a class="m_tag" href="{% url 'home' %}">{% trans "Home" %}</a></li>
           <li class="dropdown">
-            <a class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">{% trans "Product" %}<span class="caret"></span></a>
+            <a class="m_tag" href="{% url 'product' %}" data-toggle="dropdown" role="button" aria-expanded="false">{% trans "Product" %}<span class="caret"></span></a>
             <ul class="dropdown-menu drop_3" role="menu">
               <li><a href="{% url 'product' %}">{% trans "Product" %}</a></li>
               <li><a class="border_none" href="{% url 'detail' %}">{% trans "Product Detail" %}</a></li>
