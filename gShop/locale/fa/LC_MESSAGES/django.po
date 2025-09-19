@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-07 10:30+0330\n"
+"PO-Revision-Date: 2025-09-07 10:30+0330\n"
+"Last-Translator: Your Name <your-email@example.com>\n"
+"Language-Team: Persian <LL@li.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\gShop\settings.py:121
+msgid "English"
+msgstr "انگلیسی"
+
+#: .\gShop\settings.py:122
+msgid "Persian"
+msgstr "فارسی"
+
+#: .\gShop\templates\product.html:47
+msgid "Home"
+msgstr "خانه"
+
+#: .\gShop\templates\product.html:49
+msgid "Products"
+msgstr "محصولات"
+
+#: .\gShop\templates\product.html:65
+msgid "CATEGORY"
+msgstr "دسته‌بندی"
+
+#: .\gShop\templates\product.html:68
+msgid "Bangles"
+msgstr "النگو"
+
+#: .\gShop\templates\product.html:75 .\gShop\templates\product.html:84
+msgid "For Men"
+msgstr "برای مردان"
+
+#: .\gShop\templates\product.html:76 .\gShop\templates\product.html:85
+msgid "For Function"
+msgstr "برای مراسم"
+
+#: .\gShop\templates\product.html:77 .\gShop\templates\product.html:86
+msgid "For Kids"
+msgstr "برای کودکان"
+
+#: .\gShop\templates\product.html:78 .\gShop\templates\product.html:87
+msgid "For Women"
+msgstr "برای زنان"
+
+#: .\gShop\templates\product.html:82
+msgid "Bracelets"
+msgstr "دستبند"
+
+#: .\gShop\templates\product.html:95
+msgid "SEARCH"
+msgstr "جستجو"
+
+#: .\gShop\templates\product.html:97
+msgid "Search Here..."
+msgstr "اینجا جستجو کنید..."
+
+#: .\gShop\templates\product.html:108
+msgid "BEST PRODUCTS"
+msgstr "بهترین محصولات"
+
+#: .\gShop\templates\product.html:115
+msgid "Elegan Tells You The Story Of Beauty"
+msgstr "الهگان داستان زیبایی را به شما می‌گوید"
+
+#: .\gShop\templates\product.html:117
+msgid "Read More"
+msgstr "ادامه مطلب"
+
+#: .\gShop\templates\product.html:131
+msgid "Showing 1–9 of 10 results"
+msgstr "نمایش 1 تا 9 از 10 نتیجه"
+
+#: .\gShop\templates\product.html:136
+msgid "SORT BY"
+msgstr "مرتب‌سازی بر اساس"
+
+#: .\gShop\templates\product.html:138
+msgid "Price, Low To High"
+msgstr "قیمت، کم به زیاد"
+
+#: .\gShop\templates\product.html:139
+msgid "Price, High To Low"
+msgstr "قیمت، زیاد به کم"
+
+#: .\gShop\templates\product.html:140
+msgid "Alphabetically, A-Z"
+msgstr "حروفی، A تا Z"
+
+#: .\gShop\templates\product.html:141
+msgid "Alphabetically, Z-A"
+msgstr "حروفی، Z تا A"
+
+#: .\gShop\templates\product.html:142
+msgid "Date, New To Old"
+msgstr "تاریخ، جدید به قدیم"
+
+#: .\gShop\templates\product.html:157
+#, python-format
+msgid "\n              Price: %(weight)s grams\n              "
+msgstr "\n              قیمت: %(weight)s گرم\n              "
+
+#: .\gShop\templates\product.html:164
+#, python-format
+msgid "\n              Weight: %(weight)s\n              "
+msgstr "\n              وزن: %(weight)s\n              "
+
+#: .\gShop\templates\product.html:169
+msgid "Add to wishlist"
+msgstr "افزودن به علاقه‌مندی‌ها"
+
+#: .\gShop\templates\product.html:171
+#, python-format
+msgid "\n              Product Code: %(code)s\n              "
+msgstr "\n              کد محصول: %(code)s\n              "
+
+#: .\gShop\templates\base.html:19
+msgid "JEWELRY WORLD"
+msgstr "دنیای جواهرات"
+
+#: .\gShop\templates\base.html:84
+msgid "User Logout"
+msgstr "خروج کاربر"
+
+#: .\gShop\templates\base.html:85
+msgid "logout"
+msgstr "خروج"
+
+#: .\gShop\templates\base.html:89
+msgid "My Wishlist"
+msgstr "علاقه‌مندی‌های من"
+
+#: .\gShop\templates\base.html:95
+msgid "Sign Up"
+msgstr "ثبت نام"
+
+#: .\gShop\templates\base.html:96
+msgid "Login"
+msgstr "ورود"
+
+#: .\gShop\templates\base.html:213
+msgid "© 2013 Your Website Name. All Rights Reserved"
+msgstr "© 2013 نام وبسایت شما. کلیه حقوق محفوظ است"

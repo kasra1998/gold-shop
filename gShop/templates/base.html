@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      {% block title %}{% trans "Rd Jewellers" %}{% endblock title %}
+    </title>
+    
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/global.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/about.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/blog_detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/list.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+
+    <script src="{% static 'js/jquery-2.1.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/ziehharmonika.js' %}"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+
+    <script>
+      async function fetchPrice() {
+        try {
+          const response = await fetch(`/price/{{ asset_key }}/api/`, { cache: "no-store" });
+          const data = await response.json();
+          document.getElementById("price").innerText = data.price;
+        } catch (e) {
+          console.error("Error fetching price", e);
+        }
+      }
+      setInterval(fetchPrice, 20000);
+      window.onload = fetchPrice;
+    </script>
+  </head>
+<body>
+
+{% block header %}
+<section id="header">
+ <div class="container">
+  <div class="row">
+   <div class="header_1 clearfix">
+    <div class="col-sm-2">
+     <div class="header_1l text-center clearfix">
+       <h2 class="mgt"><a class="col_1" href="{% url 'home' %}">RD <span class="span_1"><p id="price">{{ price }}</p></span>  <span class="span_2">{% trans "JEWELRY WORLD" %}</span></a></h2>
+     </div>
+    </div>
+    <div class="col-sm-10">
+     <div class="header_1r clearfix">
+       <div class="header_1ri border_none clearfix">
+         <div class="input-group">
+            <input type="text" class="form-control" placeholder="{% trans "Search Here..." %}">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+         </div>
+       </div>
+       <div class="header_1ri clearfix">
+         <span class="span_1"><a class="col_1" href="#"><i class="fa fa-map-marker"></i></a></span>
+         <h5 class="mgt"><a href="#">{% trans "Store Locator" %}</a></h5>
+       </div>
+     {% if user.is_authenticated %}
+       <form class="logout" action="{% url 'logout' %}" method="post">
+         {% csrf_token %}
+         <div class="header_1ri clearfix">
+           <span class="span_1"><button class="logout-button" aria-label="{% trans "User Logout" %}" title="{% trans "User Logout" %}">👋🏼</button></span>
+           <h5 class="mgt">{% trans "logout" %}</h5>
+         </div>
+       </form>
+       <div class="header_1ri border_none clearfix">
+         <span class="span_1"><a class="col_1" href="#"><i class="fa fa-heart-o"></i></a></span>
+         <h5 class="mgt"><a href="{% url 'wishlist' %}">{% trans "My Wishlist" %}</a></h5>
+       </div>
+     {% else %}
+       <div class="header_1ri clearfix">
+         <span class="span_1"><a class="col_1" href="{% url 'signup' %}"><i class="fa fa-user"></i></a></span>
+         <h5 class="mgt"><a href="{% url 'signup' %}">{% trans "Sign Up" %}</a></h5>
+         <h5 class="mgt"><a href="{% url 'login' %}">{% trans "Login" %}</a></h5>
+       </div>
+     {% endif %}
+		 
+			<div class="header_1ri border_none clearfix">
+				{% load i18n %}
+				<form action="{% url 'set_language' %}" method="post" style="display:inline-block;">
+						{% csrf_token %}
+						<input name="next" type="hidden" value="{{ request.get_full_path }}">
+						<select name="language" onchange="this.form.submit()" class="form-control">
+								{% get_current_language as LANGUAGE_CODE %}
+								<option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+								<option value="fa" {% if LANGUAGE_CODE == 'fa' %}selected{% endif %}>فارسی</option>
+						</select>
+				</form>
+			</div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="menu" class="clearfix cd-secondary-nav">
+  <nav class="navbar nav_t">
+    <div class="container">
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">{% trans "Toggle navigation" %}</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="col_1 navbar-brand" href="{% url 'home' %}">RD <span class="span_1">{% trans "JEWELLERS" %}</span>  <span class="span_2">{% trans "JEWELRY WORLD" %}</span></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a class="m_tag" href="{% url 'home' %}">{% trans "Home" %}</a></li>
+          <li class="dropdown">
+            <a class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">{% trans "Product" %}<span class="caret"></span></a>
+            <ul class="dropdown-menu drop_3" role="menu">
+              <li><a href="{% url 'product' %}">{% trans "Product" %}</a></li>
+              <li><a class="border_none" href="{% url 'detail' %}">{% trans "Product Detail" %}</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="m_tag" href="#" data-toggle="dropdown" role="button" aria-expanded="false">{% trans "Blog" %}<span class="caret"></span></a>
+            <ul class="dropdown-menu drop_3" role="menu">
+              <li><a href="{% url 'blog' %}">{% trans "Blog" %}</a></li>
+              <li><a class="border_none" href="{% url 'blog_detail' %}">{% trans "Blog Detail" %}</a></li>
+            </ul>
+          </li>
+          <li><a class="m_tag" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
+          <li><a class="m_tag" href="{% url 'contact' %}">{% trans "Contact" %}</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</section>
+
+{% endblock header %}
+
+{% block content %}
+{% endblock content %}
+
+{% block footer %}
+<section id="footer">
+ <div class="container">
+  <div class="row">
+   <div class="footer_1 mgt clearfix">
+    <div class="col-sm-2">
+      <h4 class="mgt col_3">{% trans "Our Story" %}</h4>
+      <h5><a href="#">{% trans "The Rd Jewellers" %}</a></h5>
+      <h5><a href="#">{% trans "CSR Activities" %}</a></h5>
+      <h5><a href="#">{% trans "Get In Touch" %}</a></h5>
+      <h5><a href="#">{% trans "Career" %}</a></h5>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="footer_bottom">
+ <div class="container">
+  <div class="row">
+   <div class="footer_b clearfix">
+    <p>© 2013 {% trans "Your Website Name" %}. {% trans "All Rights Reserved" %} | {% trans "Design by" %} <a href="http://www.templateonweb.com">TemplateOnWeb</a></p>
+   </div>
+  </div>
+ </div>
+</section>
+{% endblock footer %}
+
+</body>
+</html>

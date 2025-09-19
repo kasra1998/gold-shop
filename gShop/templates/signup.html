@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section id="register">
+ <div class="container">
+  <div class="row">
+   <div class="register_1 clearfix">
+    <div class="col-sm-6 space_left">
+	 <div class="register_1l clearfix">
+	  <div class="register_1li clearfix">
+	   <h3 class="mgt">Welcome to Integer.com</h3>
+	   <p>Nulla quis sem at nibh imperdiet Duis sagittis ipsum Praesent mauris.</p>
+	   <h4 class="c_text">Create a New Account</h4>
+	  </div>
+
+    <form action="" method="post" novalidate>
+      {% csrf_token %}
+	  <div class="register_1li1 clearfix">
+	   <div class="col-sm-6 space_left">
+	    <div class="register_1li1l clearfix">
+        <label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" autofocus required aria-describedby="id_username_helptext" id="id_username">  <br><br>
+		</div>
+	   </div>
+	   <div class="col-sm-6 space_right">
+	    <div class="register_1li1l clearfix">
+        <label for="id_email">Email:</label> <input type="email" name="email" maxlength="254" id="id_email">  <br><br>
+		</div>
+	   </div>
+	  </div>
+
+
+	  <div class="register_1li1 clearfix">
+	   <div class="col-sm-12 space_all">
+	    <div class="register_1li1l clearfix">
+        <label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required aria-describedby="id_password1_helptext" id="id_password1">  <br><br>
+		</div>
+	   </div>
+	  </div>
+
+
+	  <div class="register_1li1 clearfix">
+	   <div class="col-sm-12 space_all">
+	    <div class="register_1li1l clearfix">
+        <label for="id_password2">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" required aria-describedby="id_password2_helptext" id="id_password2">  <br><br>
+		</div>
+	   </div>
+	  </div>
+  
+
+	  <div class="register_1li1 clearfix">
+	   <div class="col-sm-12 space_all">
+	    <div class="register_1li1l clearfix">
+		 <h5><button type="submit" class="button_1" value="Submit">SIGN Up</button></h5>
+		 <span class="tick_box"><input class="check" type="checkbox"> Remember Me</span>
+		</div>
+	   </div>
+	  </div>
+    </form>
+
+ </div>
+  <h5><a class="button_1" href="/login/">Go To Login Page.</a></h5>
+
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+{% endblock %}

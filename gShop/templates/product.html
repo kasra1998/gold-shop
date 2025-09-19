@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+<!-- Live Price Script -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const priceSpan = document.querySelector("#base-price");
+    if (!priceSpan) return;
+
+    let basePrice = parseFloat(priceSpan.textContent.replace(/,/g, "")) || 0;
+
+    function updatePrices(price) {
+        document.querySelectorAll(".price").forEach(el => {
+            const weight = parseFloat(el.dataset.weight) || 0;
+            const total = price * weight;
+            el.querySelector(".price-value").textContent = total.toLocaleString();
+        });
+    }
+
+    updatePrices(basePrice);
+
+    // Use your API endpoint for live updates
+    setInterval(() => {
+        fetch(`/price-api/geram18/`, { cache: "no-store" })
+            .then(res => res.json())
+            .then(data => {
+                const newPrice = parseFloat(String(data.price).replace(/,/g, ""));
+                if (!isNaN(newPrice)) updatePrices(newPrice);
+            })
+            .catch(err => console.error("Failed to fetch price:", err));
+    }, 10000);
+});
+</script>
+
+
+<!-- Breadcrumb -->
+<section id="center" class="clearfix center_prod">
+<div class="container">
+ <div class="row">
+   <div class="center_prod_1 clearfix">
+    <div class="col-sm-12">
+        <h6 class="mgt col_1 normal">
+            <a href="#">{% trans "Home" %}</a>  
+            <i style="font-size:14px; margin-left:5px; margin-right:5px;" class="fa fa-chevron-right"></i>   
+            {% trans "Products" %}
+        </h6>
+    </div>
+   </div>
+ </div>
+</div>
+</section>
+
+<!-- Product Section -->
+<section id="product">
+<div class="container">
+ <div class="row">
+   <!-- Sidebar -->
+   <div class="col-sm-3">
+      <div class="product_1l clearfix">
+        <div class="center_shop_1li clearfix">
+           <h5 class="mgt">{% trans "CATEGORY" %}</h5>
+           <div class="ziehharmonika">
+               <h3 data-prefix="★" class="active">
+                   <a href="{% url 'detail' %}">{% trans "Bangles" %}</a>
+                   <div class="arrowDown"></div><div class="collapseIcon">–</div>
+                   <div class="arrowDown"></div><div class="collapseIcon">–</div>
+                   <div class="arrowDown"></div><div class="collapseIcon">–</div>
+               </h3>
+               <div class="clickable" style="display: block;">
+                  <ul>
+                     <li><a href="{% url 'detail' %}">{% trans "For Men" %}</a></li>
+                     <li><a href="{% url 'detail' %}">{% trans "For Function" %}</a></li>
+                     <li><a href="{% url 'detail' %}">{% trans "For Kids" %}</a></li>
+                     <li><a href="{% url 'detail' %}">{% trans "For Women" %}</a></li>
+                  </ul>
+               </div>
+               <!-- Repeat for other categories -->
+               <h3 data-prefix="★"><a href="{% url 'detail' %}">{% trans "Bracelets" %}</a><div class="arrowDown"></div><div class="collapseIcon">+</div></h3>
+               <div class="clickable"><ul>
+                     <li><a href="{% url 'detail' %}">{% trans "For Men" %}</a></li>
+                     <li><a href="{% url 'detail' %}">{% trans "For Function" %}</a></li>
+                     <li><a href="{% url 'detail' %}">{% trans "For Kids" %}</a></li>
+                     <li><a href="{% url 'detail' %}">{% trans "For Women" %}</a></li>
+               </ul></div>
+               <!-- Add other categories as needed -->
+           </div>
+        </div>
+
+        <!-- Search -->
+        <div class="product_1i clearfix">
+           <h5 class="mgt">{% trans "SEARCH" %}</h5>
+           <div class="input-group">
+                <input type="text" class="form-control form_2" placeholder="{% trans 'Search Here...' %}">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+           </div>
+        </div>
+
+        <!-- Best Products -->
+        <div class="blog_1li1 clearfix">
+           <h5 class="mgt heading">{% trans "BEST PRODUCTS" %}</h5>
+           <!-- Example product -->
+           <div class="blog_1li1i clearfix">
+             <div class="col-sm-4 space_left">
+              <img src="img/22.jpg" class="iw" alt="abc">
+             </div>
+             <div class="col-sm-8 space_all">
+              <h5 class="mgt"><a href="{% url 'detail' %}">{% trans "Elegan Tells You The Story Of Beauty" %}</a></h5>
+              <h4>$ 799.00</h4>
+              <h6><a class="col_1" href="{% url 'detail' %}">{% trans "Read More" %}</a></h6>
+             </div>
+           </div>
+           <!-- Add more products -->
+        </div>
+      </div>
+   </div>
+
+   <!-- Main Product List -->
+   <div class="col-sm-9">
+      <div class="product_1r clearfix">
+          <div class="center_product_1r2 clearfix">
+              <div class="col-sm-6">
+                  <div class="center_product_1r2l clearfix">
+                      <p class="mgt">{% trans "Showing 1–9 of 10 results" %}</p>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="center_product_1r2r text-right clearfix">
+                      <h5 class="mgt">{% trans "SORT BY" %}</h5>
+                      <select class="form-control" id="subject" name="subject">
+                        <option>{% trans "Price, Low To High" %}</option>
+                        <option>{% trans "Price, High To Low" %}</option>
+                        <option>{% trans "Alphabetically, A-Z" %}</option>
+                        <option>{% trans "Alphabetically, Z-A" %}</option>
+                        <option>{% trans "Date, New To Old" %}</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="product_1r1 clearfix">
+          {% for gold in golds %}
+          <div class="col-sm-4">
+            <div class="list_2i clearfix mgt-center">
+              <a href="{% url 'detail' %}">
+                <img src="{{ gold.picture.url }}" class="iw" alt="abc">
+              </a>
+
+              <h3 class="price" data-weight="{{ gold.weight }}">
+              {% blocktrans with weight=gold.weight %}
+              Price: {{ weight }} grams
+              {% endblocktrans %}
+              <span class="price-value">0</span>
+              </h3>
+
+              <h4>
+              {% blocktrans with weight=gold.weight %}
+              Weight: {{ weight }}
+              {% endblocktrans %}
+              </h4>
+
+              <h4><a class="col_1" href="{% url 'add_to_wishlist' gold.pk %}">{% trans "Add to wishlist" %}</a></h4>
+
+            </div>
+          </div>
+          {% endfor %}
+
+          <!-- Hidden base price -->
+          <span id="base-price" style="display:none;">{{ price }}</span>
+          </div>
+
+          <!-- Pagination -->
+          <div class="product_1_last text-center clearfix">
+              <div class="col-sm-12">
+               <ul>
+                <li><a href="{% url 'detail' %}"><i class="fa fa-chevron-left"></i></a></li>
+                <li class="act"><a href="{% url 'detail' %}">1</a></li>
+                <li><a href="{% url 'detail' %}">2</a></li>
+                <li><a href="{% url 'detail' %}">3</a></li>
+               </ul>
+              </div>
+          </div>
+      </div>
+   </div>
+ </div>
+</div>
+</section>
+
+<!-- Ziehharmonika Script -->
+<script>
+$(document).ready(function() {
+        $('.ziehharmonika').ziehharmonika({
+            collapsible: true,
+            prefix: '★',
+            scroll: false
+        });
+});
+</script>
+
+{% endblock content %}

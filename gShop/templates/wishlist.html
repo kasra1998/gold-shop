@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h2>My Wishlist</h2>
+
+    {% if wishes %}
+        <ul>
+            {% for wish in wishes %}
+                <li>
+                    <img src="{{ wish.wished_item.picture.url }}" alt="Gold item" width="100" height="100">
+                    <p><strong>Weight:</strong> {{ wish.wished_item.weight }} g</p>
+                    <div class="col-sm-12 space_all">
+	                  <div class="register_1li1l clearfix">
+                    <form action="{% url 'remove_from_wishlist' wish.id %}" method="post" style="display:inline;">
+                      {% csrf_token %}      
+		                  <h5><button margin-button:10px class="button_1" value="Submit">Remove</button></h5>       
+                    </form>
+                    </div>
+	                  </div> 
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Your wishlist is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}
